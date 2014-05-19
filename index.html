@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>find number game</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var uniqueRandoms = [];
+            var numRandoms = 85;
+            function makeUniqueRandom() {
+                // refill the array if needed
+                if (!uniqueRandoms.length) {
+                    for (var i = 1; i < numRandoms; i++) {
+                        uniqueRandoms.push(i);
+                    }
+                }
+                var index = Math.floor(Math.random() * uniqueRandoms.length);
+                var val = uniqueRandoms[index];
+
+                // now remove that value from the array
+                uniqueRandoms.splice(index, 1);
+
+                return val;
+
+            }
+
+            for (var i = 1; i < 85; i++) {
+                var ramdom = makeUniqueRandom();
+                if(ramdom<10)
+                {
+                    num="0"+ramdom;
+                }
+                else
+                    num=ramdom;
+                var size=Math.floor(Math.random() * 6) + 3;
+                $("#div-img").append('<img style="width:'+size+'%;height:'+size+'%" class="img-num" id="'+num+'" src="./Image/Number/findnumber_'+num+'.png"/>');
+            }
+            $(".img-num").click(function(){
+                $(this).attr('src','./Image/Number/NumberX/findnumber_'+$(this).attr("id")+'.png')
+            });
+        });
+    </script>
+    <style>
+        .img-num
+        {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="div-img">
+</div>
+</body>
+</html>
+
